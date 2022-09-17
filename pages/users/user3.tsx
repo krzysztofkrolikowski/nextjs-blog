@@ -17,12 +17,6 @@ export const getServerSideProps = async () => {
 }
 
 const MyComponent = ({todo}) => {
-  console.log("body")
-  useEffect(() => {
-    console.log("useEffect")
-  }, []);
-
-
   return (
     <Layout>
       <Head>
