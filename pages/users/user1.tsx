@@ -1,25 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from 'next/link'
+import Script from 'next/script'
 import Image from 'next/image'
 import Head from 'next/head'
-import Script from 'next/script'
-import Layout from '../../components/layout';
+import Layout from './../../components/layout';
 
-export const getServerSideProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json());
+const MyComponent = () => {
+  const [data, setData] = useState();
 
-  return {
-    props: {
-      todo: response
-    }
-  };
-}
-
-const MyComponent = ({todo}) => {
-  console.log("body")
-  useEffect(() => {
-    console.log("useEffect")
+  useEffect( () => {
+      (() => {
+      fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => response.json())
+        .then(res => {
+            setData(res);
+        })
+    })()
   }, []);
 
 
@@ -28,7 +24,8 @@ const MyComponent = ({todo}) => {
       <Head>
         <title>First user title</title>
       </Head>
-      TODO: {JSON.stringify(todo)}
+      TODO: {JSON.stringify(data)}
+      <br/>
       <Script src="https://connect.facebook.net/en_US/sdk.js" strategy="lazyOnload" onLoad={() => {
         console.log("facebook script lazyOnload")
       }} />

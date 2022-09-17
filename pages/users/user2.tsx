@@ -4,8 +4,9 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Script from 'next/script'
 import Layout from '../../components/layout';
+import { GetStaticProps } from 'next';
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
     .then(response => response.json());
 
