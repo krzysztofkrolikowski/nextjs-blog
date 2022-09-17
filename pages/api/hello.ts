@@ -5,6 +5,8 @@
 
 // res: http.ServerResponse
 // https://nodejs.org/api/http.html#http_class_http_serverresponse
-export default function handler(req, res) {
+import {NextApiRequest, NextApiResponse} from "next";
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({text: 'Hello'})
 }
